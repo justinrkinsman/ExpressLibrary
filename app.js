@@ -1,3 +1,4 @@
+require('dotenv').config()
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -13,7 +14,7 @@ var app = express();
 
 // Set up Mongoose connection
 const mongoose = require('mongoose')
-const mongoDB = "mongodb+srv://justin:expressPassword@cluster0.xxbrhzq.mongodb.net/local_library?retryWrites=true&w=majority"
+const mongoDB = process.env.MONGO_URL
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true})
 const db = mongoose.connection
 db.on('error', console.error.bind(console, "MongoDB connection error:"))
